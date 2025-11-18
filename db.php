@@ -1,5 +1,5 @@
 <?php
-$host = "127.0.0.1"; 
+$host = "mysql"; 
 $user = "root";
 $pass = "root"; 
 $db   = "login_test"; 
@@ -10,3 +10,4 @@ if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 ?>
+
