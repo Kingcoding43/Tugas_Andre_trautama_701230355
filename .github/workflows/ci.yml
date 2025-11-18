@@ -8,6 +8,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:8
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: login_test
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -21,6 +35,9 @@ jobs:
 
       - name: Install dependencies
         run: composer install
+
+      - name: Wait for MySQL
+        run: sleep 15
 
       - name: Run PHPUnit Tests
         run: vendor/bin/phpunit --testdox
