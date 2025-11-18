@@ -36,8 +36,5 @@ jobs:
       - name: Install dependencies
         run: composer install
 
-      - name: Wait for MySQL
-        run: sleep 15
-
       - name: Run PHPUnit Tests
         run: vendor/bin/phpunit --testdox
